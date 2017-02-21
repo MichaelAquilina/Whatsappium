@@ -31,6 +31,33 @@ function getChatList () {
 }
 
 
+function getEmojiTabs() {
+    const emojiPanel = document.querySelector('div.emoji-panel');
+    return emojiPanel.querySelectorAll('button.menu-tab');
+}
+
+
+function navigateEmojiTabs(delta) {
+    const emojiTabs = getEmojiTabs();
+
+    let index = -1;
+    for(let i=0; i < emojiTabs.length; i++) {
+        const item = emojiTabs[i];
+        if (item.classList.contains('active')) {
+            index = i + delta;
+            break;
+        }
+    }
+
+    if (index < 0 || index >= emojiTabs.length) {
+        return;
+    }
+
+    let target = emojiTabs[index];
+    target.click();
+}
+
+
 function navigateConverstaion(delta) {
     const chatList = getChatList();
 
@@ -75,9 +102,15 @@ function isKeyCode(keyCode, char) {
 }
 
 
-window.onkeyup = function(e){
+window.onkeyup = function(e) {
     if(e.altKey) {
-      if(e.keyCode == 40) {
+      if (e.keyCode == 37) {
+        navigateEmojiTabs(-1);
+
+      } else if (e.keyCode == 39) {
+        navigateEmojiTabs(1);
+
+      } else if (e.keyCode == 40) {
         navigateConverstaion(1);
 
       } else if (e.keyCode == 38) {

@@ -9,3 +9,4 @@ Currently supports:
 * `Alt + Down` - Move to next conversation
 * `Alt + K` - Search contacts and chat
 * `Alt + J` - Open Emoji window
+* `Alt + Left` + `Alt + Right` - Navigate Emoji Tabs when open
