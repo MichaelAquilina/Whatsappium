@@ -63,7 +63,6 @@ function emoji() {
 }
 
 window.onkeyup = function(e){
-    console.log(e.keyCode);
     if(e.altKey && e.keyCode == 40) {
       navigateConverstaion(1);
     } else if (e.altKey && e.keyCode == 38) {
