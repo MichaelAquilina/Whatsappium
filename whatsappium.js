@@ -53,7 +53,7 @@ function navigateConverstaion(delta) {
 }
 
 
-function search() {
+function searchChats() {
     const inputSearch = document.querySelector('input.input-search');
     if (inputSearch) {
         inputSearch.focus();
@@ -61,7 +61,7 @@ function search() {
 }
 
 
-function emoji() {
+function showEmojis() {
     const buttonEmoji = document.querySelector('button.btn-emoji');
     if (buttonEmoji) {
         buttonEmoji.click();
@@ -76,15 +76,20 @@ function isKeyCode(keyCode, char) {
 
 
 window.onkeyup = function(e){
-    if(e.altKey && e.keyCode == 40) {
-      navigateConverstaion(1);
-    } else if (e.altKey && e.keyCode == 38) {
-      navigateConverstaion(-1);
-    } else if (e.altKey && isKeyCode(e.keyCode, 'k')) {
-      e.preventDefault();
-      search();
-    } else if (e.altKey && isKeyCode(e.keyCode, 'j')) {
-      e.preventDefault();
-      emoji();
+    if(e.altKey) {
+      if(e.keyCode == 40) {
+        navigateConverstaion(1);
+
+      } else if (e.keyCode == 38) {
+        navigateConverstaion(-1);
+
+      } else if (isKeyCode(e.keyCode, 'k')) {
+        e.preventDefault();
+        searchChats();
+
+      } else if (isKeyCode(e.keyCode, 'j')) {
+        e.preventDefault();
+        showEmojis();
+      }
     }
 }
