@@ -1,7 +1,7 @@
 Whatsappium
 -----------
 
-Allows you to use Keyboard shortcuts on web.whatsapp.com!
+Allows you to use Keyboard shortcuts on https://web.whatsapp.com!
 
 Currently supports:
 
