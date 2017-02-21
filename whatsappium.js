@@ -69,15 +69,21 @@ function emoji() {
 }
 
 
+function isKeyCode(keyCode, char) {
+    const keyChar = String.fromCharCode(keyCode)
+    return keyChar == char || keyChar == char.toUpperCase();
+}
+
+
 window.onkeyup = function(e){
     if(e.altKey && e.keyCode == 40) {
       navigateConverstaion(1);
     } else if (e.altKey && e.keyCode == 38) {
       navigateConverstaion(-1);
-    } else if (e.altKey && e.keyCode == 75) {
+    } else if (e.altKey && isKeyCode(e.keyCode, 'k')) {
       e.preventDefault();
       search();
-    } else if (e.altKey && e.keyCode == 74) {
+    } else if (e.altKey && isKeyCode(e.keyCode, 'j')) {
       e.preventDefault();
       emoji();
     }
