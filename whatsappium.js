@@ -6,6 +6,7 @@ function dispatchClick (item) {
   }));
 }
 
+
 function makeActive (item) {
   const chat = item.querySelector('.chat');
   if (chat) {
@@ -13,30 +14,33 @@ function makeActive (item) {
   }
 }
 
+
 function isItemActive (item) {
     const chat = item.querySelector('.chat');
     return chat && chat.classList.contains('active');
 }
 
+
 function getChatList () {
     const chatListElem = document.querySelectorAll('.infinite-list-item');
     if (chatListElem && chatListElem.length) {
-      return Array.from(chatListElem).sort(function (a, b) {
-        return parseInt(b.style.zIndex, 10) - parseInt(a.style.zIndex, 10);
-      });
+        return Array.from(chatListElem).sort(function (a, b) {
+          return parseInt(b.style.zIndex, 10) - parseInt(a.style.zIndex, 10);
+        });
     }
 }
+
 
 function navigateConverstaion(delta) {
     const chatList = getChatList();
 
     let index = -1;
     for(let i=0; i < chatList.length; i++) {
-      const item = chatList[i]
-      if (isItemActive(item)) {
-          index = i + delta;
-          break;
-      }
+        const item = chatList[i]
+        if (isItemActive(item)) {
+            index = i + delta;
+            break;
+        }
     }
 
     // If no chat is selected, default to moving to the top chat
@@ -48,6 +52,7 @@ function navigateConverstaion(delta) {
     makeActive(target);
 }
 
+
 function search() {
     const inputSearch = document.querySelector('input.input-search');
     if (inputSearch) {
@@ -55,12 +60,14 @@ function search() {
     }
 }
 
+
 function emoji() {
     const buttonEmoji = document.querySelector('button.btn-emoji');
     if (buttonEmoji) {
         buttonEmoji.click();
     }
 }
+
 
 window.onkeyup = function(e){
     if(e.altKey && e.keyCode == 40) {
