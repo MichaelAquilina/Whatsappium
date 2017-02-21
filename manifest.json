@@ -6,10 +6,6 @@
 
   "description": "Adds keyboard shortucts to Whatsapp Web",
 
-  "icons": {
-    "48": "icons/border-48.png"
-  },
-
   "content_scripts": [
     {
       "matches": ["*://web.whatsapp.com/*"],
