@@ -49,10 +49,17 @@ function navigateConverstaion(delta) {
 }
 
 function search() {
-  const inputSearch = document.querySelector('input.input-search');
-  if (inputSearch) {
-    inputSearch.focus();
+    const inputSearch = document.querySelector('input.input-search');
+    if (inputSearch) {
+        inputSearch.focus();
+    }
 }
+
+function emoji() {
+    const buttonEmoji = document.querySelector('button.btn-emoji');
+    if (buttonEmoji) {
+        buttonEmoji.click();
+    }
 }
 
 window.onkeyup = function(e){
@@ -64,5 +71,8 @@ window.onkeyup = function(e){
     } else if (e.altKey && e.keyCode == 75) {
       e.preventDefault();
       search();
+    } else if (e.altKey && e.keyCode == 74) {
+      e.preventDefault();
+      emoji();
     }
 }
