@@ -23,7 +23,7 @@ function isItemActive (item) {
 
 function getChatList () {
     const chatListElem = document.querySelectorAll('.infinite-list-item');
-    if (chatListElem && chatListElem.length) {
+    if (chatListElem.length > 0) {
         return Array.from(chatListElem).sort(function (a, b) {
           return parseInt(b.style.zIndex, 10) - parseInt(a.style.zIndex, 10);
         });
