@@ -105,7 +105,7 @@ function isKeyCode(keyCode, char) {
 }
 
 
-window.onkeyup = function(e) {
+window.addEventListener('keyup', function(e) {
     if(e.altKey) {
       if (e.keyCode == 37) {
         navigateEmojiTabs(-1);
@@ -128,4 +128,4 @@ window.onkeyup = function(e) {
         showEmojis();
       }
     }
-}
+})
