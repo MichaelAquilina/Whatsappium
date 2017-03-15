@@ -49,8 +49,11 @@ function navigateEmojiTabs(delta) {
         }
     }
 
-    if (index < 0 || index >= emojiTabs.length) {
-        return;
+    if (index < 0) {
+      index = emojiTabs.length - 1;
+    }
+    if (index >= emojiTabs.length) {
+      index = 0;
     }
 
     let target = emojiTabs[index];
