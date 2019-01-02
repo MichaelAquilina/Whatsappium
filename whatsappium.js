@@ -8,7 +8,7 @@ function dispatchClick (item) {
 
 
 function makeActive (item) {
-  const chat = item.querySelector('.chat');
+  const chat = item.querySelector('._2EXPL');
   if (chat) {
     dispatchClick(chat);
   }
@@ -16,24 +16,23 @@ function makeActive (item) {
 
 
 function isItemActive (item) {
-    const chat = item.querySelector('.chat');
-    return chat && chat.classList.contains('active');
+    const chat = item.querySelector('._2EXPL');
+    return chat && chat.classList.contains('_1f1zm');
 }
 
 
 function getChatList () {
-    const chatListElem = document.querySelectorAll('.infinite-list-item');
+    const chatListElem = document.querySelectorAll('._2wP_Y');
     if (chatListElem.length > 0) {
         return Array.from(chatListElem).sort(function (a, b) {
-          return parseInt(b.style.zIndex, 10) - parseInt(a.style.zIndex, 10);
+          return parseInt(a.style.transform.match(/\(.*\)/i)[0].match(/\d+/)[0]) - parseInt(b.style.transform.match(/\(.*\)/i)[0].match(/\d+/)[0])
         });
     }
 }
 
 
 function getEmojiTabs() {
-    const emojiPanel = document.querySelector('div.emoji-panel');
-    return emojiPanel.querySelectorAll('button.menu-tab');
+    return document.querySelectorAll('.l90LN');
 }
 
 
@@ -43,7 +42,7 @@ function navigateEmojiTabs(delta) {
     let index = -1;
     for(let i=0; i < emojiTabs.length; i++) {
         const item = emojiTabs[i];
-        if (item.classList.contains('active')) {
+        if (item.classList.contains('_2DzXb')) {
             index = i + delta;
             break;
         }
@@ -74,7 +73,7 @@ function navigateConverstaion(delta) {
     }
 
     // If no chat is selected, default to moving to the top chat
-    if (index == -1) {
+    if (index == -1 || index >= chatList.length) {
         index = 0;
     }
 
@@ -84,7 +83,7 @@ function navigateConverstaion(delta) {
 
 
 function searchChats() {
-    const inputSearch = document.querySelector('input.input-search');
+    const inputSearch = document.querySelector('input.jN-F5');
     if (inputSearch) {
         inputSearch.focus();
     }
@@ -92,7 +91,7 @@ function searchChats() {
 
 
 function showEmojis() {
-    const buttonEmoji = document.querySelector('button.btn-emoji');
+    const buttonEmoji = document.querySelector('span[data-icon=smiley]');
     if (buttonEmoji) {
         buttonEmoji.click();
     }
@@ -104,8 +103,26 @@ function isKeyCode(keyCode, char) {
     return keyChar == char || keyChar == char.toUpperCase();
 }
 
+const intervalId = setInterval(() => {
+    bindShortcuts();
+}, 5000);
 
-window.addEventListener('keyup', function(e) {
+function bindShortcuts() {
+    window.removeEventListener('keyup', handleKeyUp);
+    window.addEventListener('keyup', handleKeyUp);
+
+    if (isWhatsappPageReady()) {
+        clearInterval(intervalId);
+    }
+}
+
+function isWhatsappPageReady() {
+    const inputSearch = document.querySelector('input.jN-F5');
+    if (inputSearch) return true;
+    else return false;
+}
+
+function handleKeyUp(e) {
     if(e.altKey) {
       if (e.keyCode == 37) {
         navigateEmojiTabs(-1);
@@ -128,4 +145,4 @@ window.addEventListener('keyup', function(e) {
         showEmojis();
       }
     }
-})
+}
